@@ -1,0 +1,28 @@
+#typing_window{
+    background: #f4f2ff;
+    height: auto;
+    border-radius: 3px;
+    border-left: 5px solid #8e78fd;
+    margin: 5rem 0;
+    font-size: 24px;
+}
+
+#typing_window > span {
+    display: inline-block;
+    margin: 0;
+    padding: 0;
+    font-weight: 400;
+    outline: none;
+    box-sizing: border-box;
+    user-select: none;
+    text-align: center;
+}
+
+.correct {
+    background-color: green;
+}
+
+.mistake {
+    background-color: red;
+}
+
