@@ -1,14 +1,17 @@
-const passageList = document.querySelector('#passage_list');
+const passageList = document.querySelector("#passage_list");
+
+getPassages().then(passages => 
+    {
+        passages.forEach(passage => 
+        {
+            renderPassages(passage);
+        })
+    })
+        
 
 function getPassages() 
 {
-    return fetch('http://localhost:3000/passages')
-      .then(response => response.json())
-}
-
-function getHighscore(passageId) 
-{
-    return fetch('http://localhost:3000/passages/' + passageId + '/highscores')
+    return fetch("http://localhost:3000/passages")
       .then(response => response.json())
 }
 
@@ -20,8 +23,9 @@ function renderPassages(passage)
     let highscoreCount = document.createElement("span"); 
     highscoreCount.className = "highscore_count";
 
-    let passageTitle = document.createElement("span"); 
+    let passageTitle = document.createElement("a"); 
     passageTitle.className = "passage_title";
+    passageTitle.href = "./show.html?passage=" + passage.id
     
     getHighscore(passage.id).then(highscore =>
         highscoreCount.innerHTML = highscore.length
@@ -33,12 +37,3 @@ function renderPassages(passage)
     passageContainer.appendChild(passageTitle);
     passageList.appendChild(passageContainer);
 }
-
-getPassages().then(passages => 
-{
-    passages.forEach(passage => 
-    {
-        renderPassages(passage);
-    })
-})
-
