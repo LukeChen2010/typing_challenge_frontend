@@ -96,7 +96,9 @@ function handleUserInput(input)
             inputArray.push(2);
             node.className = "mistake";
         }
+        
         i++;
+
         if (i === 1 && !start)
         {
             start = true;
