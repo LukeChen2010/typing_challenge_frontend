@@ -15,6 +15,12 @@ function getPassages()
       .then(response => response.json())
 }
 
+function getHighscore(passageId) 
+{
+    return fetch("http://localhost:3000/passages/" + passageId + "/highscores")
+      .then(response => response.json())
+}
+
 function renderPassages(passage) 
 {
     let passageContainer = document.createElement("div"); 

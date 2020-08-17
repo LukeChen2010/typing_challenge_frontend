@@ -14,12 +14,13 @@ document.addEventListener("keydown", function(event)
 
 getPassage().then(passage => { renderPassage(passage) });
 
+var passageSplit, inputArray, start, i = 0;
+
 function renderPassage(passage)
 {
-    let passageSplit = passage.contents.split("");
-    let inputArray = [];
-    let start = false;
-    let i = 0;
+    passageSplit = passage.contents.split("");
+    inputArray = [];
+    start = false;
 
     let splitOnWords = passage.contents.split(" ");
     let letterCounter = 0;
@@ -57,12 +58,6 @@ function renderPassage(passage)
 function getPassage() 
 {
     return fetch("http://localhost:3000/passages/" + passageId)
-      .then(response => response.json())
-}
-
-function getHighscore(passageId) 
-{
-    return fetch("http://localhost:3000/passages/" + passageId + "/highscores")
       .then(response => response.json())
 }
 
