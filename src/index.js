@@ -32,14 +32,20 @@ function renderPassages(passage)
     let passageTitle = document.createElement("a"); 
     passageTitle.className = "passage_title";
     passageTitle.href = "./show.html?passage=" + passage.id
+
+    let passageHighscore = document.createElement("a"); 
+    passageHighscore.className = "passage_title";
+    passageHighscore.href = "./highscore-show.html?passage=" + passage.id
     
     getHighscore(passage.id).then(highscore =>
         highscoreCount.innerHTML = highscore.length
     );
 
     passageTitle.innerHTML = passage.title;
+    passageHighscore.innerHTML = "View highscore";
     
     passageContainer.appendChild(highscoreCount);
     passageContainer.appendChild(passageTitle);
+    passageContainer.appendChild(passageHighscore);
     passageList.appendChild(passageContainer);
 }
