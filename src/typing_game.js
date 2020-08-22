@@ -12,7 +12,7 @@ document.addEventListener("keydown", function(event)
     } 
 }); 
 
-getPassage().then(passage => { renderPassage(passage) });
+getPassage(passageId).then(passage => { renderPassage(passage) });
 
 var passageSplit, inputArray, start, i = 0;
 
@@ -55,7 +55,7 @@ function renderPassage(passage)
     document.getElementById("element" + (letterCounter - 1).toString()).remove(); //remove extra space at the end
 }
 
-function getPassage() 
+function getPassage(passageId) 
 {
     return fetch("http://localhost:3000/passages/" + passageId)
       .then(response => response.json())

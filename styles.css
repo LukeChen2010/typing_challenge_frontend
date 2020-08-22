@@ -1,4 +1,5 @@
 #typing_window{
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
     background: #f4f2ff;
     height: auto;
     border-radius: 3px;
@@ -26,17 +27,52 @@
     background-color: red;
 }
 
-#passage_list {
+body {
+    
+}
+
+h1 {
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+}
+
+h2 {
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
 }
 
 .passage_container {
-
-}
-
-.highscore_count {
-
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+    width: 500px;
+    padding: 10px;
+    border: 5px solid;
+    border-color: #4CAF50;
+    border-radius: px;
+    margin-bottom: 20px;
+    overflow: hidden;
 }
 
 .passage_title {
-
+    margin: 0;
 }
+
+#highscores_list {
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: auto;
+  }
+  
+  #highscores_list td, #highscores_list th {
+    border: 1px solid #ddd;
+    padding: 8px;
+  }
+  
+  #highscores_list tr:nth-child(even){background-color: #f2f2f2;}
+  
+  #highscores_list tr:hover {background-color: #ddd;}
+  
+  #highscores_list th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #4CAF50;
+    color: white;
+  }
