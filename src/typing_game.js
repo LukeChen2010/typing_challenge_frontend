@@ -46,7 +46,7 @@ class GameInstance
         else
         {
             let json = JSON.stringify(this);
-            ApiMethods.postHighscore(passageId, json).then(response => { console.log(response) });
+            ApiMethods.postHighscore(passageId, json).then(response => { window.location.href = "./highscore-show.html?passage=" + passageId });
         }
     }
 }
@@ -178,8 +178,6 @@ function won()
     game.time = totalcentiseconds;
     game.name = name;
     game.saveToDatabase(passageId);
-
-    window.location.href = "./highscore-show.html?passage=" + passageId
 }
 
 let h1 = document.getElementsByTagName("h1")[0],
