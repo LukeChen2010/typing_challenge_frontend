@@ -177,7 +177,7 @@ function won()
        
     game.time = totalcentiseconds;
     game.name = name;
-    game.saveToDatabase();
+    game.saveToDatabase(passageId);
 
     window.location.href = "./highscore-show.html?passage=" + passageId
 }
