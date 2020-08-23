@@ -3,9 +3,9 @@ const passageTitle = document.querySelector("#passage_title");
 
 const passageId = document.URL.split("=")[1];
 
-getPassage(passageId).then(passage => { renderPassage(passage) });
+ApiMethods.getPassage(passageId).then(passage => { renderPassage(passage) });
 
-getHighscore(passageId).then(highscores => 
+ApiMethods.getHighscore(passageId).then(highscores => 
     { 
         highscores.forEach(highscore => 
         {
@@ -30,14 +30,23 @@ function renderHighscore(highscore)
     newCell.appendChild(newText);
 }
 
-function getPassage(passageId) 
+class ApiMethods
 {
-    return fetch("http://localhost:3000/passages/" + passageId)
-      .then(response => response.json())
-}
+    static getPassage(passageId) 
+    {
+        return fetch("http://localhost:3000/passages/" + passageId)
+        .then(response => response.json())
+    }
 
-function getHighscore(passageId) 
-{
-    return fetch("http://localhost:3000/passages/" + passageId + "/highscores")
-      .then(response => response.json())
+    static getPassages() 
+    {
+        return fetch("http://localhost:3000/passages")
+        .then(response => response.json())
+    }
+
+    static getHighscore(passageId) 
+    {
+        return fetch("http://localhost:3000/passages/" + passageId + "/highscores")
+        .then(response => response.json())
+    }
 }

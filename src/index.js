@@ -1,25 +1,12 @@
 const passageList = document.querySelector("#passage_list");
 
-getPassages().then(passages => 
+ApiMethods.getPassages().then(passages => 
 {
     passages.forEach(passage => 
     {
         renderPassages(passage);
     })
-})
-        
-
-function getPassages() 
-{
-    return fetch("http://localhost:3000/passages")
-      .then(response => response.json())
-}
-
-function getHighscore(passageId) 
-{
-    return fetch("http://localhost:3000/passages/" + passageId + "/highscores")
-      .then(response => response.json())
-}
+})       
 
 function renderPassages(passage) 
 {
@@ -58,4 +45,25 @@ function renderPassages(passage)
     passageContainer.appendChild(passageTitleContainer);
     
     passageList.appendChild(passageContainer);
+}
+
+class ApiMethods
+{
+    static getPassage(passageId) 
+    {
+        return fetch("http://localhost:3000/passages/" + passageId)
+        .then(response => response.json())
+    }
+
+    static getPassages() 
+    {
+        return fetch("http://localhost:3000/passages")
+        .then(response => response.json())
+    }
+
+    static getHighscore(passageId) 
+    {
+        return fetch("http://localhost:3000/passages/" + passageId + "/highscores")
+        .then(response => response.json())
+    }
 }
