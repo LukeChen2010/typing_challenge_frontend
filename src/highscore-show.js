@@ -1,3 +1,24 @@
+class ApiMethods
+{
+    static getPassage(passageId) 
+    {
+        return fetch("http://localhost:3000/passages/" + passageId)
+        .then(response => response.json());
+    }
+
+    static getPassages() 
+    {
+        return fetch("http://localhost:3000/passages")
+        .then(response => response.json());
+    }
+
+    static getHighscore(passageId) 
+    {
+        return fetch("http://localhost:3000/passages/" + passageId + "/highscores")
+        .then(response => response.json());
+    }
+}
+
 const highscoreList = document.querySelector("#highscores_list");
 const passageTitle = document.querySelector("#passage_title");
 
@@ -15,7 +36,7 @@ ApiMethods.getHighscore(passageId).then(highscores =>
 
 function renderPassage(passage)
 {
-    passageTitle.innerHTML = "Viewing highscore for " + passage.title
+    passageTitle.innerHTML = "Viewing highscore for " + passage.title;
 }
 
 function renderHighscore(highscore)
@@ -28,25 +49,4 @@ function renderHighscore(highscore)
     newCell  = newRow.insertCell(-1);
     newText  = document.createTextNode(highscore.time/100);
     newCell.appendChild(newText);
-}
-
-class ApiMethods
-{
-    static getPassage(passageId) 
-    {
-        return fetch("http://localhost:3000/passages/" + passageId)
-        .then(response => response.json())
-    }
-
-    static getPassages() 
-    {
-        return fetch("http://localhost:3000/passages")
-        .then(response => response.json())
-    }
-
-    static getHighscore(passageId) 
-    {
-        return fetch("http://localhost:3000/passages/" + passageId + "/highscores")
-        .then(response => response.json())
-    }
 }

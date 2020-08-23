@@ -1,7 +1,61 @@
+class ApiMethods
+{
+    static getPassage(passageId) 
+    {
+        return fetch("http://localhost:3000/passages/" + passageId)
+        .then(response => response.json());
+    }
+
+    static getPassages() 
+    {
+        return fetch("http://localhost:3000/passages")
+        .then(response => response.json());
+    }
+
+    static getHighscore(passageId) 
+    {
+        return fetch("http://localhost:3000/passages/" + passageId + "/highscores")
+        .then(response => response.json());
+    }
+
+    static postHighscore(passageId, gameInstanceJson)
+    {
+        return fetch("http://localhost:3000/passages/" + passageId + "/highscores/new",
+        {
+            headers: {
+                Authorization: "authenticity_token",
+                'Content-Type': 'application/json'
+            },
+            method: "POST",
+            body: gameInstanceJson
+        })
+        .then(response => response.json());
+    }
+}
+
+class GameInstance
+{
+    constructor() {}
+
+    saveToDatabase(passageId)
+    {
+        if (this.time === null || this.name === null)
+        {
+            return;
+        }
+        else
+        {
+            let json = JSON.stringify(this);
+            ApiMethods.postHighscore(passageId, json).then(response => { console.log(response) });
+        }
+    }
+}
+
 const typingWindow = document.querySelector('#typing_window');
 const inputBox = document.querySelector('#input');
 
 const passageId = document.URL.split("=")[1];
+let game = new GameInstance(passageId)
 
 document.addEventListener("keydown", function(event) 
 { 
@@ -108,15 +162,32 @@ function handleUserInput(input)
 
 function won()
 {
-    alert("WON!");
     clearTimeout(t);
+
+    let name = "";
+
+    while (name === "")
+    {
+        name = prompt("Congratulations! Your time was " + totalcentiseconds/100 + " seconds. Please enter your name:");
+        if (name === null)
+        {
+            name = "";
+        }
+    }
+       
+    game.time = totalcentiseconds;
+    game.name = name;
+    game.saveToDatabase();
+
+    window.location.href = "./highscore-show.html?passage=" + passageId
 }
 
 let h1 = document.getElementsByTagName("h1")[0],
     totalcentiseconds = 0, centiseconds = 0, seconds = 0, minutes = 0, hours = 0,
     t;
 
-function add() {
+function add() 
+{
     totalcentiseconds++
     centiseconds++
 
@@ -138,29 +209,11 @@ function add() {
     timer();
 }
 
-function timer() {
+function timer() 
+{
     t = setTimeout(add, 10);
 }
 
-class ApiMethods
-{
-    static getPassage(passageId) 
-    {
-        return fetch("http://localhost:3000/passages/" + passageId)
-        .then(response => response.json())
-    }
 
-    static getPassages() 
-    {
-        return fetch("http://localhost:3000/passages")
-        .then(response => response.json())
-    }
-
-    static getHighscore(passageId) 
-    {
-        return fetch("http://localhost:3000/passages/" + passageId + "/highscores")
-        .then(response => response.json())
-    }
-}
 
 
