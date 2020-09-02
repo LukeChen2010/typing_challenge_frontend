@@ -1,24 +1,3 @@
-class ApiMethods
-{
-    static getPassage(passageId) 
-    {
-        return fetch("http://localhost:3000/passages/" + passageId)
-        .then(response => response.json());
-    }
-
-    static getPassages() 
-    {
-        return fetch("http://localhost:3000/passages")
-        .then(response => response.json());
-    }
-
-    static getHighscore(passageId) 
-    {
-        return fetch("http://localhost:3000/passages/" + passageId + "/highscores")
-        .then(response => response.json());
-    }
-}
-
 const highscoreList = document.querySelector("#highscores_list");
 const passageTitle = document.querySelector("#passage_title");
 

@@ -1,24 +1,3 @@
-class ApiMethods
-{  
-    static getPassage(passageId) 
-    {
-        return fetch("http://localhost:3000/passages/" + passageId)
-        .then(response => response.json());
-    }
-
-    static getPassages() 
-    {
-        return fetch("http://localhost:3000/passages")
-        .then(response => response.json());
-    }
-
-    static getHighscore(passageId) 
-    {
-        return fetch("http://localhost:3000/passages/" + passageId + "/highscores")
-        .then(response => response.json());
-    }
-}
-
 const passageList = document.querySelector("#passage_list");
 
 ApiMethods.getPassages().then(passages => 
@@ -41,11 +20,11 @@ function renderPassages(passage)
     );
 
     let passageTitle = document.createElement("a"); 
-    passageTitle.href = "./show.html?passage=" + passage.id
+    passageTitle.href = "./show.html?passage=" + passage.id;
     passageTitle.innerHTML = passage.title;
 
     let passageHighscore = document.createElement("a"); 
-    passageHighscore.href = "./highscore-show.html?passage=" + passage.id
+    passageHighscore.href = "./highscore-show.html?passage=" + passage.id;
     passageHighscore.innerHTML = "View highscore";
 
     let linebreak = document.createElement("br");
